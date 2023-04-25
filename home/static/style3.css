@@ -9,7 +9,7 @@
   width: 1300px;
   border: none;
   background-color: #c8f3fa;
- 
+  
   align-items: center;
   
 
@@ -29,11 +29,6 @@
   padding-left: 10px;
 }
 
-nav{
-  flex:1.5;
-  padding-left: 440px;
-
-}
 nav ul li{
   display: inline-block;
   list-style: none;
@@ -527,6 +522,7 @@ body {
   bottom: 100px;
   left: 710px;
   z-index: 2;
+  color: white;
 }
 .vertical {
   border-left: 2px solid rgb(70, 201, 201);
@@ -656,19 +652,19 @@ border-radius: 5px;
 font-weight: bold;
 letter-spacing: 5px;
 text-transform: uppercase;
-color: #2c9caf;
+color: #ffffff;
 transition: all 1000ms;
 font-size: 15px;
 position: relative;
 overflow: hidden;
-outline: 2px solid #2c9caf;
+outline: 2px solid #ffffff;
 }
 
 .button7:hover {
 color: #ffffff;
 transform: scale(1.1);
-outline: 2px solid #70bdca;
-box-shadow: 4px 5px 17px -4px #268391;
+outline: 2px solid #ffffff;
+box-shadow: 4px 5px 17px -4px #ffffff;
 }
 
 .button7::before {
@@ -678,7 +674,7 @@ left: -50px;
 top: 0;
 width: 0;
 height: 100%;
-background-color: #2c9caf;
+background-color: #ffffff;
 transform: skewX(45deg);
 z-index: -1;
 transition: width 1000ms;

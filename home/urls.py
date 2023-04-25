@@ -5,6 +5,8 @@ from diary import views as dv
 from chatbot import views as cv
 from chartapp import views as ccv
 
+
+
 urlpatterns = [
     path('', views.index, name="index"),
     path('comm.html', views.index2, name="community"),
@@ -26,4 +28,7 @@ urlpatterns = [
     path('ri.html',views.ri,name="ri"),
     path('ms.html',views.ms,name="ms"),
     path('chartapp/index.html',ccv.index99,name="chartapp"),
+    path('sos.html',views.sos,name="sos"),
+    path('sos2.html',views.sos2,name="sos2"),
+    
 ]

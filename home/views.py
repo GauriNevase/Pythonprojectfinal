@@ -1,12 +1,16 @@
-from django.shortcuts import render
+from audioop import reverse
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import *
+from django.shortcuts import redirect, render
+
+
 # Create your views here.
 def index(request):
     return render(request, "index.html")
@@ -35,7 +39,7 @@ def ac(request):
     context = {'Comment1':Comment1}
     return render(request, "ac.html",context)
 
-def dc(request):
+def dc(request ):
     if request.method=='POST':
         context = request.POST.get('comment')
         user = request.user
@@ -43,7 +47,7 @@ def dc(request):
             person = Commentdc(user=user,context=context)
             person.save()
             redirect('dc')
-    
+
     #Comment1 = Commentdc.objects.all()
     Comment1 = Commentdc.objects.order_by('dates')
     context = {'Comment1':Comment1}
@@ -61,6 +65,41 @@ def anger(request):
     Comment1 = CommentAI.objects.all()
     context = {'Comment1':Comment1}
     return render(request, "aissues.html",context)
+
+
+
+
+
+
+def sos(request):
+
+    if so12.objects.filter(user=request.user) == '':
+        return render(request, "sos2.html")
+           
+    else: 
+        if request.method=='POST':
+            La = request.POST.get('La')
+            Wp = request.POST.get('Fp')
+            Sn = request.POST.get('Sn')
+            Ws = request.POST.get('Ws')
+            Cn = request.POST.get('Ca')
+            user = request.user
+            try:
+                entries = so12.objects.filter(user=request.user)
+                entries.delete()
+            except:
+                pass
+            person = so12(user=user,La=La,Fp=Wp,Sn=Sn,Ws=Ws,Ca=Cn)
+            person.save()
+            return redirect('sos2')
+        return render(request, "sos.html") 
+        
+    
+def sos2(request):
+    
+    SOS1 = so12.objects.filter(user = request.user )
+    context = {'sos1':SOS1}
+    return render(request, "sos2.html", context)
 
 def Hi(request):
     if request.method=='POST':
@@ -101,8 +140,6 @@ def ms(request):
     context = {'Comment1':Comment1}
     return render(request, "ms.html",context)
 
-
-
 def login1(request):
     if request.method == 'POST':
         if 'signup' in request.POST:
@@ -130,7 +167,7 @@ def login1(request):
             print(username1)
             print(password1)
             user = authenticate(request,username=username1,password=password1)
-            print(user)
+            
             if user is not None:
                 login(request,user)
                 return redirect('afterlogin')
