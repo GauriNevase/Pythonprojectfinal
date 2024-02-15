@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
+import bleach
 
 bot = ChatBot('chatbot',read_only=False,
                 logic_adapters=[
@@ -49,3 +50,12 @@ def getResponse(request):
    userMessage = request.GET.get('userMessage')
    chatResponse = str(bot.get_response(userMessage))
    return HttpResponse(chatResponse)
+
+def getResponse(request):
+    userMessage = request.GET.get('userMessage')
+    chatResponse = str(bot.get_response(userMessage))
+
+    # Sanitize the chatResponse to allow only safe HTML tags
+    safe_chatResponse = bleach.clean(chatResponse, tags=['a'], attributes={'a': ['href']})
+
+    return HttpResponse(safe_chatResponse)

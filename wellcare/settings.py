@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'myapp',
     'crispy_forms',
     'chartapp',
+    'bleach',
 ]
 
 MIDDLEWARE = [
